@@ -2,7 +2,9 @@ const initalState = {
     resolution:{
         width:1024,
         height:768
-    }
+    },
+
+    snakeSpeed:1
 }
 
 

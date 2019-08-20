@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import MainComponent from './Main/Init'
+import MainComponent from './Main/Init';
+import GameComponent from './Game/Init';
 
 
 class Init extends Component {
@@ -18,8 +19,8 @@ class Init extends Component {
             >
                 <Router>
                     <Route exact path="/" component={MainComponent} />
-                    {/* <Route exact path="/Game" component={} />
-                    <Route exact path="/Settings" component={} /> */}
+                    <Route exact path="/Game" component={GameComponent} />
+                    {/* <Route exact path="/Settings" component={} /> */}
                 </Router>
             </div>
         )

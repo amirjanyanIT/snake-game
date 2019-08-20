@@ -20,3 +20,7 @@ body {
 .typeography.secondary {
     color:#abddff;
 }
+
+.clear {
+    clear: both;
+}

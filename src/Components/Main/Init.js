@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-class Init extends Component {
+class Main extends Component {
     render(){
         return(
             <div className="Main">
@@ -19,4 +19,4 @@ class Init extends Component {
 }
 
 
-export default Init;
+export default Main;
