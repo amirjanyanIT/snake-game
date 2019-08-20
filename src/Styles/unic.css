@@ -1,0 +1,27 @@
+.Snake-game {
+    margin: 0px auto;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    border: 1px solid #61dafb;
+}
+
+.game-title {
+    text-align: center;
+    font-size: 8em !important;
+    margin-top: 7%;
+}
+
+.actions { 
+    text-align: center;
+    margin-top: 30%;
+}
+
+.actions p {
+    font-size: 4em !important;
+}
+
+.actions p:hover {
+    color: #07c4ff !important;
+}

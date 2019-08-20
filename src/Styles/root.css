@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Gaming';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./Fonts/ARCADECLASSIC.TTF') format('truetype')
+  }
+
+
+body {
+    background:#282c34;
+    font-family:'Gaming'
+}
+
+.typography.primary {
+    font-family: 'Gaming';
+    font-size: 24px;
+    color:#61dafb;
+}
+
+.typeography.secondary {
+    color:#abddff;
+}
