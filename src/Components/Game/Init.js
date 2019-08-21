@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import setBaseDataAction from '../../Actions/setBaseData';
+import changeSnakePositionAction from '../../Actions/changeSnakePositionAction';
 
 class Game extends Component {
 
@@ -21,22 +22,53 @@ class Game extends Component {
         }
     }
 
+    componentWillReceiveProps(){
+        if(!window.generateFruit && this.props.snake.gameStatus === 'In progress'){
+            window.generateFruit = setInterval(() => {
+                
+            },500);
+        }
+
+        if(this.props.snake.gameStatus !== 'In progress' && window.generateFruit){
+            clearInterval(window.generateFruit);
+        }
+    }
+
     onGameKeyDown(e){ 
+
+        if(window.move){
+            clearInterval(window.move);
+        }
+        else{
+            this.props.changeGameStatusToInProgress()
+        }
+
         let key = e.which;
         // eslint-disable-next-line default-case
         switch(key) {
             case 37:
                 // Key left.
-                
+                window.move = setInterval(() => {
+                    this.props.changeSnakePosition('left')
+                },500)
                 break;
             case 38:
-                // Key up.
+                // Key Up
+                window.move = setInterval(() => {
+                    this.props.changeSnakePosition('up')
+                },500)
                 break;
             case 39:
-                // Key right.
+                // Key Right
+                window.move = setInterval(() => {
+                    this.props.changeSnakePosition('right')
+                },500)
                 break;
             case 40:
                 // Key down.
+                window.move = setInterval(() => {
+                    this.props.changeSnakePosition('down')
+                },500)
                 break;
         } 
     }
@@ -83,7 +115,6 @@ class Game extends Component {
                                     >
                                         <div style={{
                                             background:this.setColBackground(col),
-                                            borderRadius:'90%',
                                             width:'65%',
                                             height:'100%',
                                             display:'inline-block'
@@ -102,12 +133,19 @@ class Game extends Component {
 
 const mapStateToProps = state => ({
     settings:state.Settings,
-    area:state.Area
+    area:state.Area,
+    snake:state.Snake
 });
 
 const mapDispatchToProps = dispatch => ({
     setBaseData(){
         dispatch(setBaseDataAction());
+    },
+    changeSnakePosition(to){
+        dispatch(changeSnakePositionAction(to));
+    },
+    changeGameStatusToInProgress(){
+        dispatch({type:'SET_GAME_STATUS', payload:'In progress'});
     }
 });
 
