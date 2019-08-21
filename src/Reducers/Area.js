@@ -12,9 +12,23 @@ export default (state = initialState, action) => {
                     if(action.payload.x === x && action.payload.y === y){
                         return 'head';
                     }
-                    return null;
+                    if(col !== 'head'){
+                        return col;
+                    }
+                    else{
+                        return null;
+                    }
                 })
             )
+        case 'SET_FRUIT':
+            return state.map((row,y) =>
+            row.map((col,x) => {
+                if(action.payload.x === x && action.payload.y === y){
+                    return 'fruit';
+                }
+                return null;
+            })
+        )
         default:
             return state;
     }

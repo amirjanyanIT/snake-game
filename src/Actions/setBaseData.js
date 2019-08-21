@@ -12,10 +12,12 @@ function createArea(size){
     return area;
 }
 
-export default () => dispatch => {
+export default () => (dispatch,getState) => {
+
+    const { Settings } = getState();
 
     // Create game area
-    const area = createArea(31);
+    const area = createArea(Settings.areaSize);
 
 
 

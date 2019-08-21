@@ -3,7 +3,7 @@ const initalState = {
         width:1024,
         height:768
     },
-
+    areaSize:31,
     snakeSpeed:1
 }
 
