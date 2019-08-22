@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import setBaseDataAction from '../../Actions/setBaseData';
 import changeSnakePositionAction from '../../Actions/changeSnakePositionAction';
 import setFruitAction from '../../Actions/setFruit';
+import { isNull } from 'util';
 
 class Game extends Component {
 
@@ -12,16 +13,29 @@ class Game extends Component {
         this.props.setBaseData();
     }
 
-    setColBackground(col){
+    setColBackground(col,cords){
         switch(col){
             case 'head':
                 return '#61dafb';
-            case 'tail':
-                return 'yellow';
             case 'fruit':
                 return 'green';
             default:
-                return 'none';
+                let thereIsTail = false;
+
+                if(this.props.snake.tailPartPositions.length){
+                    this.props.snake.tailPartPositions.forEach(tailPart => {
+                        if(cords.x === tailPart.x && cords.y === tailPart.y){
+                            thereIsTail = true;
+                        }
+                    })
+                }
+                if(thereIsTail){
+
+                    return 'yellow'
+                }
+                else{
+                    return 'none'
+                }
         }
     }
 
@@ -50,25 +64,25 @@ class Game extends Component {
                 // Key left.
                 window.move = setInterval(() => {
                     this.props.changeSnakePosition('left')
-                },1)
+                },50)
                 break;
             case 38:
                 // Key Up
                 window.move = setInterval(() => {
                     this.props.changeSnakePosition('up')
-                },1)
+                },50)
                 break;
             case 39:
                 // Key Right
                 window.move = setInterval(() => {
                     this.props.changeSnakePosition('right')
-                },1)
+                },50)
                 break;
             case 40:
                 // Key down.
                 window.move = setInterval(() => {
                     this.props.changeSnakePosition('down')
-                },1)
+                },50)
                 break;
         } 
     }
@@ -95,13 +109,17 @@ class Game extends Component {
                 </div>
                 <div 
                     className="Main"
+                    style={{
+                        width:this.props.settings.resolution.height,
+                        borderRight:'1px solid #61dafb'
+                    }}
                 >
                     { this.props.area.map((row,rKey) => (
                         <div 
                             className="Row"
                             key={rKey}
                             style={{ 
-                                height: ((this.props.settings.resolution.height * 9 / 9.99) / this.props.area[0].length) 
+                                height: ((this.props.settings.resolution.height * 9 / 9.99) / this.props.area[0].length),
                             }}
                         >
                             {
@@ -114,8 +132,8 @@ class Game extends Component {
                                         }}
                                     >
                                         <div style={{
-                                            background:this.setColBackground(col),
-                                            width:'65%',
+                                            background:this.setColBackground(col,{y:rKey,x:cKey}),
+                                            width:'100%',
                                             height:'100%',
                                             display:'inline-block'
                                         }}>

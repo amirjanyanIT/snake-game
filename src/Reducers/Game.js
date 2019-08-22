@@ -1,6 +1,6 @@
 const initialState = {
     score:0,
-    life:3
+    life:3,
 }
 
 
@@ -13,6 +13,11 @@ export default (state = initialState,action) => {
                 ...state,
                 score:0,
                 life:3
+            }
+        case 'SET_TAIL_LENGTH':
+            return {
+                ...state,
+                tailLength:action.payload
             }
         case 'ADD_SCORE':
             return  {

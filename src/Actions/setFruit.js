@@ -15,13 +15,12 @@ export default () => (dispatch,getState) => {
                 }
             }
         }
-    
+
         if(!hasFruit){
             let x = generateRandomNumber(Settings.areaSize,new Array(Snake.position.x));
             let y = generateRandomNumber(Settings.areaSize,new Array(Snake.position.y));
     
             dispatch({ type:'SET_FRUIT', payload:{x,y} })
         }
-    
     },1000);
 }
