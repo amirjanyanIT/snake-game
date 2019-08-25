@@ -4,7 +4,7 @@ const initalState = {
         height:768
     },
     areaSize:31,
-    snakeSpeed:1
+    gameSpeed:50
 }
 
 
