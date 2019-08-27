@@ -1,6 +1,6 @@
 const initialState = {
     score:0,
-    life:3,
+    status:'passive'
 }
 
 
@@ -8,11 +8,15 @@ export default (state = initialState,action) => {
 
     switch(action.type){
         
-        case 'RESET_GAME_SCORE_AND_LIFE':
+        case 'RESET_GAME_SCORE':
             return {
                 ...state,
                 score:0,
-                life:3
+            }
+        case 'SET_GAME_STATUS':
+            return {
+                ...state,
+                status:action.payload
             }
         case 'SET_TAIL_LENGTH':
             return {

@@ -9,7 +9,6 @@ class States extends Component {
         return (
             <div className="States" style={{ width: this.props.Settings.resolution.width - this.props.Settings.resolution.height  }}>
                 <ul>
-                    <li>Life&nbsp;&nbsp; {this.props.Game.life}</li>
                     <li>Score&nbsp;&nbsp; {this.props.Game.score} </li>
                 </ul>
                 <div className="actions">

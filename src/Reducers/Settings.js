@@ -3,8 +3,8 @@ const initalState = {
         width:1024,
         height:768
     },
-    areaSize:31,
-    gameSpeed:50
+    areaSize:17,
+    gameSpeed:60
 }
 
 
@@ -12,7 +12,7 @@ export default (state = initalState, action) => {
 
     switch(action.type){
 
-        default:
+           default:
             return state;
     }
 }

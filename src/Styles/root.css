@@ -24,3 +24,17 @@ body {
 .clear {
     clear: both;
 }
+
+
+
+.GameOver .info {
+    text-align: center;
+    font-size: 8em !important;
+    font-family: 'Gaming';
+    color:#abddff
+}
+
+
+.GameOver .actions a {
+    font-size: 4em !important;
+}

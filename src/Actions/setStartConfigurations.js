@@ -31,6 +31,8 @@ export default () => (dispatch,getState) => {
     const { Settings } = getState();
 
     dispatch({ type:'SET_AREA', payload: createArea(Settings.areaSize) });
+    dispatch({ type:'RESET_GAME_SCORE' });
+    dispatch({ type:'SET_GAME_STATUS', payload:'passive' });
     dispatch({ type:'SET_SNAKE_POSITION', payload: getInitalSnakePosition(Settings.areaSize) });
     dispatch({ type:'REMOVE_TAIL_PARTS' });
 }

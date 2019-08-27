@@ -1,13 +1,14 @@
 import eatFruitAction from './eatFruit';
 import newTailPartAction from './newTailPart';
 import attachTailAction from './attachTail';
+import gameoverAction from './gameover';
 
 export default (moveTo) => (dispatch,getState) => {
 
-    const { Snake,Settings } = getState();
+    const { Snake,Settings,Game } = getState();
 
     let goTo = { ...Snake.position };
-
+        
     // eslint-disable-next-line
     switch(moveTo){
         case 'left':
@@ -35,10 +36,15 @@ export default (moveTo) => (dispatch,getState) => {
                 dispatch({ type:'SET_SNAKE_POSITION', payload:goTo }); 
         break;
     }
-    dispatch({ type:'SET_SNAKE_OLD_POSITION', payload:Snake.position });
-    
-    dispatch(eatFruitAction());
-    dispatch(newTailPartAction());
 
-    dispatch(attachTailAction());
+    dispatch({ type:'SET_GAME_STATUS', payload:'active' })
+
+    if(Game.status !== 'passive'){
+        dispatch({ type:'SET_SNAKE_OLD_POSITION', payload:Snake.position });
+    
+        dispatch(eatFruitAction());
+        dispatch(newTailPartAction());
+        dispatch(attachTailAction());
+        dispatch(gameoverAction());
+    }
 }

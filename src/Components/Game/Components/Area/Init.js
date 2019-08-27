@@ -5,6 +5,15 @@ import Position from './elements/Position';
 
 class Area extends Component {
 
+    componentDidMount(){
+        let fruitPosition = {
+            x:2,
+            y:2
+        };
+        
+        this.props.dispatch({ type:'SET_NEW_FRUIT', payload:fruitPosition });
+    }
+
     render() {
         return (
             <div className="Area" style={{ width: (this.props.Settings.resolution.height) }}>
@@ -25,6 +34,6 @@ class Area extends Component {
 }
 
 
-const mapStateToProps = ({ Area, Settings }) => ({ Area, Settings });
+const mapStateToProps = ({ Area, Settings, Game, Snake }) => ({ Area, Settings,Game, Snake });
 
 export default connect(mapStateToProps)(Area);

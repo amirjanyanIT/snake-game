@@ -50,6 +50,7 @@ export default (state=initialState, action) => {
                 tailParts:action.payload
             }
         case 'SET_NEW_FRUIT':
+            console.log(action.payload);
             return {
                 ...state,
                 fruit:action.payload

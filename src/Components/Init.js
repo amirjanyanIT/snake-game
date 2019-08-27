@@ -5,7 +5,7 @@ import { HashRouter as Router, Route } from 'react-router-dom'
 
 import MainComponent from './Main/Init';
 import GameComponent from './Game/Init';
-
+import GameOverComponent from './Game/Components/GameOver.js'
 
 class Init extends Component {
     render(){
@@ -20,6 +20,7 @@ class Init extends Component {
                 <Router>
                     <Route exact path="/" component={MainComponent} />
                     <Route exact path="/Game" component={GameComponent} />
+                    <Route exact path="/gameover" component={GameOverComponent} />
                     {/* <Route exact path="/Settings" component={} /> */}
                 </Router>
             </div>

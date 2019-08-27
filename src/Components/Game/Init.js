@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 
 import Area from '../../Components/Game/Components/Area/Init';
 import States from '../../Components/Game/Components/States';
@@ -7,19 +9,13 @@ import States from '../../Components/Game/Components/States';
 
 import setStartConfigurationsAction from '../../Actions/setStartConfigurations';
 import moveSnakeAction from '../../Actions/SnakeMovements/moveSnake';
-import createFruitAction from '../../Actions/createFruit';
 
 class Game extends Component {
 
 
-    componentWillMount(){
+    componentDidMount(){
+        console.log(111);
         this.props.dispatch(setStartConfigurationsAction());
-    }
-    
-    componentDidUpdate(){
-        if(!this.props.Snake.fruit){
-            this.props.dispatch(createFruitAction());
-        }
     }
     onGameKeyDown({ which }){
         if( (which >= 37 && which <= 40) || which === 96 ) {
@@ -65,6 +61,7 @@ class Game extends Component {
     }
     render() {
         return (
+            <>
             <div 
                 className="Game"
                 onKeyDown={this.onGameKeyDown.bind(this)}
@@ -73,10 +70,15 @@ class Game extends Component {
                 <Area />
                 <States />
             </div>
+
+            { this.props.Game.status === 'gameover' &&
+                <Redirect to="/gameover" />
+            }
+            </>
         );
     }
 }
 
-const mapStateToProps = ({ Settings,Snake }) => ({ Settings,Snake });
+const mapStateToProps = ({ Settings,Snake,Game }) => ({ Settings,Snake,Game });
 
 export default connect(mapStateToProps)(Game);

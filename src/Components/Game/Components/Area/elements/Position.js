@@ -10,13 +10,13 @@ class Position extends Component {
 
         if(_.isEqual(this.props.cords,this.props.Snake.position)){
             // Snake Position
-            color = 'green'; 
+            color = '#61d9fa'; 
         }
 
         if(this.props.Snake.tailParts.length){
             for(var tailPart of this.props.Snake.tailParts){
                 if(_.isEqual(this.props.cords,tailPart)){
-                    color = 'yellow';
+                    color = '#61d9fa';
                 }
             }
         }
@@ -29,17 +29,16 @@ class Position extends Component {
 
         return color;
     }
-
+    
     render(){
         return (
             <div 
                 className="Position"
-                style={{ 
+                style={{
                     backgroundColor:this.setCurrentPositionColor(),
                     width: (this.props.Settings.resolution.height / (this.props.Settings.areaSize)),
                 }}
             >
-
             </div>
         )
     }
